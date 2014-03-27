@@ -46,11 +46,6 @@
 
 @implementation RomanNumeralsKataTests
 
-- (void)assertNumber:(NSNumber *)number convertsToRomanNumeral:(NSString *)romanNumeral
-{
-    XCTAssertEqualObjects([number toRoman], romanNumeral, @"Number %@ should be converted to roman numeral %@.", number, romanNumeral);
-}
-
 - (void)testValidConversions
 {
     NSDictionary *validConversions = @{
@@ -76,6 +71,11 @@
     [validConversions enumerateKeysAndObjectsUsingBlock:^(NSNumber *number, NSString *romanNumeral, BOOL *stop) {
         [self assertNumber:number convertsToRomanNumeral:romanNumeral];
     }];
+}
+
+- (void)assertNumber:(NSNumber *)number convertsToRomanNumeral:(NSString *)romanNumeral
+{
+    XCTAssertEqualObjects([number toRoman], romanNumeral, @"Number %@ should be converted to roman numeral %@.", number, romanNumeral);
 }
 
 @end
