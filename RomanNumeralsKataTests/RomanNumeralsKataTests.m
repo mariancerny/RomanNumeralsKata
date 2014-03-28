@@ -36,7 +36,10 @@
         NSNumber *arabic = pairs[0];
         NSString *roman = pairs[1];
 
-        while (value >= arabic.integerValue) { [romanNumeral appendString:roman]; value -= arabic.integerValue; }
+        while (value >= arabic.integerValue) {
+            [romanNumeral appendString:roman];
+            value -= arabic.integerValue;
+        }
     }];
 
     return romanNumeral;
