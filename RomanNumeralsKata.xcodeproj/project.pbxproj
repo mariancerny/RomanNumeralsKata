@@ -250,8 +250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F052308190CA586002986EC /* RomanNumeralsKata2Tests.m in Sources */,
 				2FDC747118E4D1E0008B33C0 /* RomanNumeralsKataTests.m in Sources */,
+				2F052308190CA586002986EC /* RomanNumeralsKata2Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
