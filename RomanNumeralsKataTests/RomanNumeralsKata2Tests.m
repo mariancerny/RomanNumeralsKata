@@ -21,7 +21,8 @@
 {
     NSDictionary *conversionsToTest = @{@0: @"",
                                         @1: @"I",
-                                        @5: @"V"};
+                                        @5: @"V",
+                                        @10: @"X"};
 
     [conversionsToTest enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *expectedRomanNumber, BOOL *stop) {
         NSString *romanNumber = [arabicNumber toRoman];
@@ -41,6 +42,9 @@
 
     if ([self isEqualToNumber:@5])
         return @"V";
+
+    if ([self isEqualToNumber:@10])
+        return @"X";
 
     return @"";
 }
