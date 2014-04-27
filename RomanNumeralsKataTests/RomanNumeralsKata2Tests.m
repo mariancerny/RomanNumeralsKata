@@ -17,31 +17,17 @@
 
 @implementation RomanNumeralsKata2Tests
 
-- (void)testZeroConvertsToEmptyString
+- (void)testConversion
 {
-    NSNumber *arabicNumber = @0;
+    NSDictionary *conversionsToTest = @{@0: @"",
+                                        @1: @"I",
+                                        @5: @"V"};
 
-    NSString *romanNumber = [arabicNumber toRoman];
+    [conversionsToTest enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *expectedRomanNumber, BOOL *stop) {
+        NSString *romanNumber = [arabicNumber toRoman];
 
-    XCTAssertEqualObjects(romanNumber, @"", @"Zero should convert to an empty string");
-}
-
-- (void)testOneConvertsToI
-{
-    NSNumber *arabicNumber = @1;
-
-    NSString *romanNumber = [arabicNumber toRoman];
-
-    XCTAssertEqualObjects(romanNumber, @"I", @"One should convert to I");
-}
-
-- (void)testFiveConvertsToV
-{
-    NSNumber *arabicNumber = @5;
-
-    NSString *romanNumber = [arabicNumber toRoman];
-
-    XCTAssertEqualObjects(romanNumber, @"V", @"Five should convert to V");
+        XCTAssertEqualObjects(romanNumber, expectedRomanNumber, @"Arabic number %@ should convert to roman number %@", arabicNumber, romanNumber);
+    }];
 }
 
 @end
