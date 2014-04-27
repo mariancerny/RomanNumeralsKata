@@ -21,13 +21,14 @@
 {
     NSDictionary *conversionsToTest = @{@0: @"",
                                         @1: @"I",
+                                        @2: @"II",
                                         @5: @"V",
                                         @10: @"X"};
 
     [conversionsToTest enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *expectedRomanNumber, BOOL *stop) {
         NSString *romanNumber = [arabicNumber toRoman];
 
-        XCTAssertEqualObjects(romanNumber, expectedRomanNumber, @"Arabic number %@ should convert to roman number %@", arabicNumber, romanNumber);
+        XCTAssertEqualObjects(romanNumber, expectedRomanNumber, @"Arabic number %@ should convert to roman number %@", arabicNumber, expectedRomanNumber);
     }];
 }
 
@@ -37,15 +38,23 @@
 
 - (NSString *)toRoman
 {
-    NSDictionary *replacements = @{@1: @"I",
-                                   @5: @"V",
-                                   @10: @"X"};
+    NSArray *replacements = @[
+                              @[@10, @"X"],
+                              @[@5, @"V"],
+                              @[@1, @"I"],
+                              ];
 
     __block NSString *result = @"";
 
-    [replacements enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *romanNumber, BOOL *stop) {
-        if ([self isEqualToNumber:arabicNumber])
-            result = romanNumber;
+    [replacements enumerateObjectsUsingBlock:^(NSArray *pair, NSUInteger idx, BOOL *stop) {
+        NSNumber *arabicNumber = pair[0];
+        NSString *romanNumber = pair[1];
+
+        if (self.integerValue >= arabicNumber.integerValue) {
+            NSNumber *reminder = @(self.integerValue - arabicNumber.integerValue);
+            result = [romanNumber stringByAppendingString:[reminder toRoman]];
+            *stop = YES;
+        }
     }];
 
     return result;
