@@ -25,7 +25,16 @@
                                         @3: @"III",
                                         @4: @"IV",
                                         @5: @"V",
-                                        @10: @"X"};
+                                        @6: @"VI",
+                                        @7: @"VII",
+                                        @8: @"VIII",
+                                        @9: @"IX",
+                                        @10: @"X",
+                                        @50: @"L",
+                                        @100: @"C",
+                                        @500: @"D",
+                                        @1000: @"M",
+                                        };
 
     [conversionsToTest enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *expectedRomanNumber, BOOL *stop) {
         NSString *romanNumber = [arabicNumber toRoman];
@@ -41,7 +50,12 @@
 - (NSString *)toRoman
 {
     NSArray *replacements = @[
+                              @[@1000, @"M"],
+                              @[@500, @"D"],
+                              @[@100, @"C"],
+                              @[@50, @"L"],
                               @[@10, @"X"],
+                              @[@9, @"IX"],
                               @[@5, @"V"],
                               @[@4, @"IV"],
                               @[@1, @"I"],
