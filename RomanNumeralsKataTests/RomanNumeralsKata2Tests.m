@@ -35,6 +35,15 @@
     XCTAssertEqualObjects(romanNumber, @"I", @"One should convert to I");
 }
 
+- (void)testFiveConvertsToV
+{
+    NSNumber *arabicNumber = @5;
+
+    NSString *romanNumber = [arabicNumber toRoman];
+
+    XCTAssertEqualObjects(romanNumber, @"V", @"Five should convert to V");
+}
+
 @end
 
 @implementation NSNumber (RomanNumeral)
@@ -43,7 +52,10 @@
 {
     if ([self isEqualToNumber:@1])
         return @"I";
-    
+
+    if ([self isEqualToNumber:@5])
+        return @"V";
+
     return @"";
 }
 
