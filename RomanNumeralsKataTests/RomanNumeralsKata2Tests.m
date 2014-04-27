@@ -22,13 +22,15 @@
     NSDictionary *conversionsToTest = @{@0: @"",
                                         @1: @"I",
                                         @2: @"II",
+                                        @3: @"III",
+                                        @4: @"IV",
                                         @5: @"V",
                                         @10: @"X"};
 
     [conversionsToTest enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *expectedRomanNumber, BOOL *stop) {
         NSString *romanNumber = [arabicNumber toRoman];
 
-        XCTAssertEqualObjects(romanNumber, expectedRomanNumber, @"Arabic number %@ should convert to roman number %@", arabicNumber, expectedRomanNumber);
+        XCTAssertEqualObjects(romanNumber, expectedRomanNumber, @"Failed to conver arabic number %@", arabicNumber);
     }];
 }
 
@@ -41,6 +43,7 @@
     NSArray *replacements = @[
                               @[@10, @"X"],
                               @[@5, @"V"],
+                              @[@4, @"IV"],
                               @[@1, @"I"],
                               ];
 
