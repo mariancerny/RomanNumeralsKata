@@ -37,16 +37,18 @@
 
 - (NSString *)toRoman
 {
-    if ([self isEqualToNumber:@1])
-        return @"I";
+    NSDictionary *replacements = @{@1: @"I",
+                                   @5: @"V",
+                                   @10: @"X"};
 
-    if ([self isEqualToNumber:@5])
-        return @"V";
+    __block NSString *result = @"";
 
-    if ([self isEqualToNumber:@10])
-        return @"X";
+    [replacements enumerateKeysAndObjectsUsingBlock:^(NSNumber *arabicNumber, NSString *romanNumber, BOOL *stop) {
+        if ([self isEqualToNumber:arabicNumber])
+            result = romanNumber;
+    }];
 
-    return @"";
+    return result;
 }
 
 @end
