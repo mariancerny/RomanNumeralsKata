@@ -12,7 +12,7 @@
 @end
 
 @interface NSNumber (RomanNumeral)
-- (NSString *)toArabic;
+- (NSString *)toRoman;
 @end
 
 @implementation RomanNumeralsKata2Tests
@@ -21,7 +21,7 @@
 {
     NSNumber *arabicNumber = @0;
 
-    NSString *romanNumber = [arabicNumber toArabic];
+    NSString *romanNumber = [arabicNumber toRoman];
 
     XCTAssertEqualObjects(romanNumber, @"", @"Zero should convert to an empty string");
 }
@@ -30,7 +30,7 @@
 
 @implementation NSNumber (RomanNumeral)
 
-- (NSString *)toArabic
+- (NSString *)toRoman
 {
     return @"";
 }
